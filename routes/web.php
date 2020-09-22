@@ -6,27 +6,10 @@ Route::get('/', function () {
     return 'HOME';
 });
 
-Route::get('/usuarios', function () {
-    return 'Usuarios';
-});
+Route::get('/usuarios','UserController@index');
 
-# Crear ruta nuevo ususario
-Route::get('/usuarios/nuevo', function () {
-    return 'Crear Nuevo Usuario';
-});
+Route::get('/usuarios/nuevo', 'UserController@new_user');
 
-# Tener una URL más limpia 
-# Creo una ruta dinamica
-Route::get('/usuarios/{id}', function ($id) {
-    return 'Mostrando detalle del ususario: '.$id;
-});
+Route::get('/usuarios/{id}', 'UserController@show');
 
-
-Route::get('/saludo/{name}/{nickname?}', function ($name, $nickname = null) {
-    if($nickname) {
-    	return 'Bienvenido '.$name.' tu apodo es: '.$nickname;
-    } else {
-    	return 'Bienvenido '.$name.' no tienes apodo';
-    }
-    
-});
+Route::get('/saludo/{name}/{nickname?}', 'WelcomeUserController');
